@@ -30,7 +30,6 @@ for _ in range(test_case):
 
     parent = {}
     count = {}
-    idx = 0
     for _ in range(relations):
         friend1, friend2 = map(str, input().split())
 
