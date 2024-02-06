@@ -1,0 +1,19 @@
+def solution(x, y, n):
+    dp=[-1]*(y + 1)
+    dp[x]=0
+    
+    for i in range(x,y):
+        if dp[i]==-1:
+            continue
+        
+        for next in [i+n,i*2,i*3]:
+            # 한번도 도달하지 않았던 숫자라면 이전 수의 연산 횟수에 +1
+            if next<=y and dp[next]==-1:
+                dp[next]=dp[i]+1
+        
+    if x==y:
+        dp[y]=0
+        
+    answer=dp[y]
+    
+    return answer
