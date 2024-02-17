@@ -1,26 +1,19 @@
+from collections import deque
+
 def solution(x, y, n):
-    dp=[-1]*1000001
-    dp[x]=0
+    answer = 0
     
-    if x==y:
-        return 0
-    
-    for i in range(x,y+1):
-        if dp[i]==-1:
-            continue
+    queue=deque([(x,0)])  
+    visited=[0]*(y+1)
+    visited[x]=1
+    while queue:
+        num,cnt=queue.popleft()
+        if num==y:
+            return cnt 
         
-        for near in [i+n,i*2,i*3]:
-            # 한번도 도달하지 않았던 숫자라면 이전 수의 연산 횟수에 +1
-            if near<=y:
-                if dp[near]==-1:
-                    dp[near]=dp[i]+1
-                else:
-                    dp[near]=min(dp[near],dp[i]+1)
-                
-                # if near==y:
-                #     i=near
-                #     return dp[near]
-                
-    answer=dp[y]
+        for next_num in [num+n,num*2,num*3]:
+            if next_num<=y and visited[next_num]==0:
+                visited[next_num]=1
+                queue.append((next_num,cnt+1))
     
-    return answer
+    return -1
