@@ -1,19 +1,12 @@
 def solution(participant, completion):
     answer = ''
-    
-    dic={}
+    temp = 0
+    dic = {}
+    for part in participant:
+        dic[hash(part)] = part
+        temp += int(hash(part))
     for com in completion:
-        if com not in dic:
-            dic[com]=1
-        else:
-            dic[com]+=1
-    
-    for par in participant:
-        if par not in dic:
-            return par
-        else:
-            dic[par]-=1
-            if dic[par]==0:
-                dic.pop(par)
-                
+        temp -= hash(com)
+    answer = dic[temp]
+
     return answer
