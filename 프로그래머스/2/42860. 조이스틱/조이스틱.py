@@ -1,8 +1,9 @@
 def solution(name):
     answer = 0
 
-    move = len(name) - 1
-
+    min_move = len(name) - 1
+    post = 0
+    
     for idx, n in enumerate(name):
         answer += min(ord(n) - ord("A"), ord("Z") - ord(n) + 1)
 
@@ -10,8 +11,9 @@ def solution(name):
         while post < len(name) and name[post] == "A":
             post += 1
 
-        move = min([move, 2 * idx + len(name) - post, idx + 2 * (len(name) - post)])
+        dist = min(idx, n - post)
+        min_move = min(min_move, idx + len(name) - post + dist)
 
-    answer += move
+    answer += min_move
 
     return answer
