@@ -1,6 +1,4 @@
-import heapq
 def solution(book_time):
-    answer = 0
     
     # 모든 시간을 분으로 표시
     book_min=[]
@@ -15,7 +13,6 @@ def solution(book_time):
     for srt,end in book_min:
         if len(time)==0:
             time.append(end+10)
-            answer+=1
             continue
         
         fast_end=min(time)
@@ -23,7 +20,6 @@ def solution(book_time):
             time[time.index(fast_end)]=end+10
         else:
             time.append(end+10)
-            answer+=1
         
     
-    return answer
+    return len(time)
