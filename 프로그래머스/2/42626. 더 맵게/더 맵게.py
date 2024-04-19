@@ -18,5 +18,3 @@ def solution(scoville, K):
                 return -1
         else:
             return answer
-        
-    return -1
